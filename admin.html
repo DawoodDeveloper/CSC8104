@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+
+<html id="#pg">
+
+<head>
+<!-- # ------------   Main Settings   -------------------- # -->
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta property="invite_link_type">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:type" content="website" />
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image" />
+<!-- #colors -->
+<meta name="theme-color" content="#212531">
+<meta name="msapplication-navbutton-color" content="#2b0f00">
+<meta name="apple-mobile-web-app-status-bar-style" content="#2b0f00">
+<!-- #colors -->
+<!-- # ------------  Main Settings   -------------------- # -->
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+
+    document.getElementById('ln1').value= urlParams.get('FirstName');
+    document.getElementById('ln2').value= urlParams.get('LastName');
+    document.getElementById('ln3').value= urlParams.get('Email');
+    document.getElementById('ln4').value= urlParams.get('PhoneNumber');
+    document.getElementById('ln5').value= urlParams.get('NumberofSeats');
+    document.getElementById('ln6').value= urlParams.get('FutureDate');
+  })
+</script>
+
+
+<!-- # ------------  js     -------------------- # -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src='https://drs.drsplatform.com/antich.js'></script>
+<!-- # ------------  js     -------------------- # -->
+
+
+<!-- # ------------  css     -------------------- # -->
+<style>.alertify-log {
+    -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+       -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+        -ms-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+         -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+            transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
+  }
+  .alertify-hide {
+    -webkit-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+       -moz-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+        -ms-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+         -o-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+            transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
+  }
+  .alertify-log-hide {
+    -webkit-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+       -moz-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+        -ms-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+         -o-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+            transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
+  }
+  .alertify-cover {
+    position: fixed; z-index: 99999;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color:white;
+    filter:alpha(opacity=0);
+    opacity:0;
+  }
+    .alertify-cover-hidden {
+      display: none;
+    }
+  .alertify {
+    position: fixed; z-index: 99999;
+    top: 50px; left: 50%;
+    width: 550px;
+    margin-left: -275px;
+    opacity: 1;
+  }
+    .alertify-hidden {
+      -webkit-transform: translate(0,-150px);
+         -moz-transform: translate(0,-150px);
+          -ms-transform: translate(0,-150px);
+           -o-transform: translate(0,-150px);
+              transform: translate(0,-150px);
+      opacity: 0;
+      display: none;
+    }
+    /* overwrite display: none; for everything except IE6-8 */
+    :root *> .alertify-hidden {
+      display: block;
+      visibility: hidden;
+    }
+  .alertify-logs {
+    position: fixed;
+    z-index: 5000;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+  }
+  .alertify-logs-hidden {
+    display: none;
+  }
+    .alertify-log {
+      display: block;
+      margin-top: 10px;
+      position: relative;
+      right: -300px;
+      opacity: 0;
+    }
+    .alertify-log-show {
+      right: 0;
+      opacity: 1;
+    }
+    .alertify-log-hide {
+      -webkit-transform: translate(300px, 0);
+         -moz-transform: translate(300px, 0);
+          -ms-transform: translate(300px, 0);
+           -o-transform: translate(300px, 0);
+              transform: translate(300px, 0);
+      opacity: 0;
+    }
+    .alertify-dialog {
+      padding: 25px;
+    }
+      .alertify-resetFocus {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      .alertify-inner {
+        text-align: center;
+      }
+      .alertify-text {
+        margin-bottom: 15px;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        font-size: 100%;
+      }
+     
+  
+  @media only screen and (max-width: 680px) {
+    .alertify,
+    .alertify-logs {
+      width: 90%;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
+    }
+    .alertify {
+      left: 5%;
+      margin: 0;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  /**
+   * Default Look and Feel
+   */
+  .alertify,
+  .alertify-log {
+    font-family: sans-serif;
+  }
+  .alertify {
+    background: #FFF;
+    border: 10px solid #333; /* browsers that don't support rgba */
+    border: 10px solid rgba(0,0,0,.7);
+    border-radius: 8px;
+    box-shadow: 0 3px 3px rgba(0,0,0,.3);
+    -webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
+       -moz-background-clip: padding;     /* Firefox 3.6 */
+            background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+  }
+    .alertify-text {
+      border: 1px solid #CCC;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .alertify-button {
+      border-radius: 4px;
+      color: #FFF;
+      font-weight: bold;
+      padding: 6px 15px;
+      text-decoration: none;
+      text-shadow: 1px 1px 0 rgba(0,0,0,.5);
+      box-shadow: inset 0 1px 0 0 rgba(255,255,255,.5);
+      background-image: -webkit-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+      background-image:    -moz-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+      background-image:     -ms-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+      background-image:      -o-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+      background-image:         linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+    }
+    .alertify-button:hover,
+    .alertify-button:focus {
+      outline: none;
+      background-image: -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+      background-image:    -moz-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+      background-image:     -ms-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+      background-image:      -o-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+      background-image:         linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+    }
+    .alertify-button:focus {
+      box-shadow: 0 0 15px #2B72D5;
+    }
+    .alertify-button:active {
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+    }
+      .alertify-button-cancel,
+      .alertify-button-cancel:hover,
+      .alertify-button-cancel:focus {
+        background-color: #FE1A00;
+        border: 1px solid #D83526;
+      }
+      .alertify-button-ok,
+      .alertify-button-ok:hover,
+      .alertify-button-ok:focus {
+        background-color: #5CB811;
+        border: 1px solid #3B7808;
+      }
+  
+  
+  
+  
+  
+  .alertify-log {
+    background: #1F1F1F;
+    background: rgba(0,0,0,.9);
+    padding: 15px;
+    border-radius: 4px;
+    color: #FFF;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.5);
+  }
+    .alertify-log-error {
+      background: #FE1A00;
+      background: rgba(254,26,0,.9);
+      font-weight: bolder;
+      font-family: 'tajawal';
+      text-align: end;
+      filter: drop-shadow(3px 3px 1px white);  
+    }
+    .alertify-log-success {
+      background: #5CB811;
+      background: #1c92f4;
+      font-weight: bolder;
+      font-family: 'tajawal';
+      text-align: end;
+      filter: drop-shadow(3px 3px 1px white);  }
+.scale-in-ver-bottom {
+      -webkit-animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+              animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }@-webkit-keyframes scale-in-ver-bottom {
+    0% {
+      -webkit-transform: scaleY(0);
+              transform: scaleY(0);
+      -webkit-transform-origin: 0% 100%;
+              transform-origin: 0% 100%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 0% 100%;
+              transform-origin: 0% 100%;
+      opacity: 1;
+    }
+  }
+  @keyframes scale-in-ver-bottom {
+   0% {
+      -webkit-transform: translateY(1000px);
+              transform: translateY(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-bottom {
+    0% {
+      -webkit-transform: translateY(1000px);
+              transform: translateY(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }/* Remove background color on active state for links */
+ 
+  
+    *{
+      cursor: unset !important;
+    }.scale-in-ver-bottom {
+      -webkit-animation: scale-in-ver-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+              animation: scale-in-ver-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }@-webkit-keyframes scale-in-ver-bottom {
+      0% {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+        -webkit-transform-origin: 0% 100%;
+                transform-origin: 0% 100%;
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+        -webkit-transform-origin: 0% 100%;
+                transform-origin: 0% 100%;
+        opacity: 1;
+      }
+    }
+    @keyframes scale-in-ver-bottom {
+      0% {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+        -webkit-transform-origin: 0% 100%;
+                transform-origin: 0% 100%;
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+        -webkit-transform-origin: 0% 100%;
+                transform-origin: 0% 100%;
+        opacity: 1;
+      }
+    }
+    *{
+      cursor:default !important
+    }
+ 
+
+    
+    .alertify-log {
+      -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+         -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+          -ms-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+           -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+              transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
+    }
+    .alertify-hide {
+      -webkit-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+         -moz-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+          -ms-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+           -o-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+              transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
+    }
+    .alertify-log-hide {
+      -webkit-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+         -moz-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+          -ms-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+           -o-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+              transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
+    }
+    .alertify-cover {
+      position: fixed; z-index: 99999;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background-color:white;
+      filter:alpha(opacity=0);
+      opacity:0;
+    }
+      .alertify-cover-hidden {
+        display: none;
+      }
+    .alertify {
+      position: fixed; z-index: 99999;
+      top: 50px; left: 50%;
+      width: 550px;
+      margin-left: -275px;
+      opacity: 1;
+    }
+      .alertify-hidden {
+        -webkit-transform: translate(0,-150px);
+           -moz-transform: translate(0,-150px);
+            -ms-transform: translate(0,-150px);
+             -o-transform: translate(0,-150px);
+                transform: translate(0,-150px);
+        opacity: 0;
+        display: none;
+      }
+      /* overwrite display: none; for everything except IE6-8 */
+      :root *> .alertify-hidden {
+        display: block;
+        visibility: hidden;
+      }
+    .alertify-logs {
+      position: fixed;
+      z-index: 5000;
+      top: 10px;
+      right: 10px;
+      width: 300px;
+    }
+    .alertify-logs-hidden {
+      display: none;
+    }
+      .alertify-log {
+        display: block;
+        margin-top: 10px;
+        position: relative;
+        right: -300px;
+        opacity: 0;
+      }
+      .alertify-log-show {
+        right: 0;
+        opacity: 1;
+      }
+      .alertify-log-hide {
+        -webkit-transform: translate(300px, 0);
+           -moz-transform: translate(300px, 0);
+            -ms-transform: translate(300px, 0);
+             -o-transform: translate(300px, 0);
+                transform: translate(300px, 0);
+        opacity: 0;
+      }
+      .alertify-dialog {
+        padding: 25px;
+      }
+        .alertify-resetFocus {
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
+        .alertify-inner {
+          text-align: center;
+        }
+        .alertify-text {
+          margin-bottom: 15px;
+          width: 100%;
+          -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+          font-size: 100%;
+        }
+       
+    
+    @media only screen and (max-width: 680px) {
+      .alertify,
+      .alertify-logs {
+        width: 90%;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+      }
+      .alertify {
+        left: 5%;
+        margin: 0;
+      }
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * Default Look and Feel
+     */
+    .alertify,
+    .alertify-log {
+      font-family: sans-serif;
+    }
+    .alertify {
+      background: #FFF;
+      border: 10px solid #333; /* browsers that don't support rgba */
+      border: 10px solid rgba(0,0,0,.7);
+      border-radius: 8px;
+      box-shadow: 0 3px 3px rgba(0,0,0,.3);
+      -webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
+         -moz-background-clip: padding;     /* Firefox 3.6 */
+              background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+    }
+      .alertify-text {
+        border: 1px solid #CCC;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .alertify-button {
+        border-radius: 4px;
+        color: #FFF;
+        font-weight: bold;
+        padding: 6px 15px;
+        text-decoration: none;
+        text-shadow: 1px 1px 0 rgba(0,0,0,.5);
+        box-shadow: inset 0 1px 0 0 rgba(255,255,255,.5);
+        background-image: -webkit-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+        background-image:    -moz-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+        background-image:     -ms-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+        background-image:      -o-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+        background-image:         linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+      }
+      .alertify-button:hover,
+      .alertify-button:focus {
+        outline: none;
+        background-image: -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+        background-image:    -moz-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+        background-image:     -ms-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+        background-image:      -o-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+        background-image:         linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+      }
+      .alertify-button:focus {
+        box-shadow: 0 0 15px #2B72D5;
+      }
+      .alertify-button:active {
+        position: relative;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+      }
+        .alertify-button-cancel,
+        .alertify-button-cancel:hover,
+        .alertify-button-cancel:focus {
+          background-color: #FE1A00;
+          border: 1px solid #D83526;
+        }
+        .alertify-button-ok,
+        .alertify-button-ok:hover,
+        .alertify-button-ok:focus {
+          background-color: #5CB811;
+          border: 1px solid #3B7808;
+        }
+    
+    
+    
+    
+    
+    .alertify-log {
+      background: #1F1F1F;
+      background: rgba(0,0,0,.9);
+      padding: 15px;
+      border-radius: 4px;
+      color: #FFF;
+      text-shadow: -1px -1px 0 rgba(0,0,0,.5);
+    }
+      .alertify-log-error {
+        background: #FE1A00;
+        background: rgba(254,26,0,.9);
+        font-weight: bolder;
+        font-family: 'tajawal';
+        text-align: end;
+        filter: drop-shadow(3px 3px 1px white);  
+      }
+      .alertify-log-success {
+        background: #5CB811;
+        background: #1c92f4;
+        font-weight: bolder;
+        font-family: 'tajawal';
+        text-align: end;
+        filter: drop-shadow(3px 3px 1px white);  }
+        .alertify, .alertify-logs {
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 56565656565656565656565656565656565656565656565656565656565656565666666666;
+
+        }
+    </style>
+<!-- # ------------  css     -------------------- # -->
+
+  
+<!-- # ------------  fonts     -------------------- # -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Tajawal:wght@200;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tapestry&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marhey:wght@500&family=Rubik:ital@1&display=swap" rel="stylesheet">
+<!-- # ------------  fonts     -------------------- # -->
+
+    
+
+
+
+
+<!-- # ------------  imgs     -------------------- # -->
+<meta property="og:image" itemprop="image" content="">
+<link itemprop="thumbnailUrl" href="">
+<meta name="twitter:image" content="" />
+<link rel="shortcut icon" href="">
+<!-- # ------------  imgs     -------------------- # -->
+
+
+
+
+
+
+
+<!-- # ------------  info     -------------------- # -->
+<!-- #url -->
+<meta property="og:site_name" content="url">
+<meta property="og:url" content="url">
+<!-- #url -->
+
+<!-- #title -->
+<meta property="og:title" content="">
+<meta name="twitter:site" content="" />
+<meta name="twitter:title" content="" />
+<title></title>
+<!-- #title -->
+
+
+<!-- #keys -->
+<meta property="og:keywords" content="">
+<meta property="keywords" content="">
+<!-- #keys -->
+
+
+<!-- #description -->
+<meta property="og:description" content="">
+<meta property="description" content="">
+<meta name="twitter:description" content="">
+<!-- #description -->
+<!-- # ------------  info   -------------------- # -->
+</head>
+
+<!-- # ------------  over all styles   -------------------- # -->
+
+
+<style>
+    html,body{
+        overflow-x: hidden;
+overflow-y: hidden;
+    }
+    input{
+        direction: rtl;
+    }
+    *{
+        scroll-behavior: smooth;
+        font-family: 'tajawal' , 'cairo' , cursive;
+        color: white;
+    }
+    html{
+        width: 100%;
+    height: 100%;
+    }body{
+        margin: 0px;  
+          display: flex;
+    justify-content: center;
+    flex-direction: column;
+    }
+</style>
+
+
+<!-- # ------------  over all styles   -------------------- # -->
+ 
+
+
+<!-- # ------------ body   -------------------- # -->
+
+<body>
+
+
+<!-- # ------------  login   -------------------- # -->
+<div>
+    <div style="  background-color: rgb(184, 198, 219);
+    background-image: linear-gradient(315deg, rgb(184, 198, 219) 0%, rgb(245, 247, 250) 74%);
+    display: block;
+    visibility: visible;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;" id="login">
+
+        <div style="
+    margin: 20px;
+    padding: 10px;
+    direction: rtl;
+">
+
+
+            <div style="direction: rtl;">
+
+
+                <center>
+
+                    <img src="https://cdn.glitch.global/2726a7f2-ead0-48ae-8782-80fcbefba50b/d18a400b0d-removebg-preview.png?v=1699437693432" style="
+                    width: 325px;
+                ">
+
+                    <h3 class="font-effect">Edit a Booking</h3>
+                </center>
+                <style>
+                    #login {
+                        z-index: 22222222222222222;
+                        position: absolute;
+                    }
+
+                    .font-effect {
+                        font-size: 1.875rem;
+                        line-height: 1.375;
+                        font-family: 'tajawal';
+                        letter-spacing: 0em;
+                        font-weight: 700;
+                        background-image: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        color: transparent;
+                        /* Make the text color transparent */
+                    }
+                </style>
+
+            </div>
+            <div class="menu" style="display: none;
+            margin-top: 16px;
+            width: 90%;
+            background: linear-gradient(166deg, rgb(33, 212, 253), #2196f3);
+            border-radius: 14px;
+            padding: 16px;
+            ">
+            <input onchange="
+            
+            //self
+            
+            
+            $('#stanlosa').addClass('fade-out-bottom')
+            
+            
+            $('#stanlosa').removeClass('stan')
+            
+            $('#security').removeClass('fade-out-bottom')
+            $('#security').addClass('stan')
+            
+            async function main() {
+            
+            await new Promise(res => setTimeout(res, 700));
+            
+            
+            document.getElementById('stanlosa').style.display='none'
+            document.getElementById('security').style.display='block'
+            }
+            main() "  class="menu_input" id="btn1" name="menu" type="radio">
+            <label class="menu_label" for="btn1" style="
+            display: flex;
+            align-items: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            flex-direction: row-reverse;
+            ">
+            <div class="fa fa-bars"><img src="https://cdn-icons-png.flaticon.com/128/10416/10416185.png" style="
+            width: 25px;
+            filter: invert(1);
+            "></div>
+            <div class="menu_text" style="
+            font-weight: bolder;
+            ">Saved</div>
+            </label>
+            
+            
+            <div class="menu_box" style="
+            display: none;
+            ">
+            <div class="menu_list">
+            About Us
+            </div>
+            <div class="menu_list">
+            Contact Us
+            </div>
+            </div>
+            <style>
+            #newnotf,#billing{
+            display: none;
+            }
+            </style>
+            <script>
+            async function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            </script>
+<style>
+  
+.stan{-webkit-animation:fade-in-top .4s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in-top .4s cubic-bezier(.39,.575,.565,1.000) both ; animation-delay: 0.41s;}
+@-webkit-keyframes fade-in-top{0%{-webkit-transform:translateY(-50px);transform:translateY(-50px);opacity:0;display: block;}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes fade-in-top{0%{-webkit-transform:translateY(-50px);transform:translateY(-50px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1;display: block !important;}}
+
+
+.fade-out-bottom{-webkit-animation:fade-out-bottom .4s cubic-bezier(.25,.46,.45,.94) both;animation:fade-out-bottom .4s cubic-bezier(.25,.46,.45,.94) both ; animation-delay: 0.41s;}
+@-webkit-keyframes fade-out-bottom{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(50px);transform:translateY(50px);opacity:0}}@keyframes fade-out-bottom{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(50px);transform:translateY(50px);opacity:0;display: none;}}
+
+
+#toka{-webkit-animation:kenburns-top 5s ease-out both;animation:kenburns-top 5s ease-out both}
+@-webkit-keyframes kenburns-top{0%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0);-webkit-transform-origin:50% 16%;transform-origin:50% 16%}100%{-webkit-transform:scale(1.25) translateY(-15px);transform:scale(1.25) translateY(-15px);-webkit-transform-origin:top;transform-origin:top}}@keyframes kenburns-top{0%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0);-webkit-transform-origin:50% 16%;transform-origin:50% 16%}100%{-webkit-transform:scale(1.25) translateY(-15px);transform:scale(1.25) translateY(-15px);-webkit-transform-origin:top;transform-origin:top}}
+
+</style>
+            <input checked class="menu_input" id="btn2" onchange="
+            
+            
+            //self
+            
+            
+            $('#security').addClass('fade-out-bottom')
+            
+            $('#stanlosa').addClass('fade-out-bottom')
+            
+            $('#security').removeClass('stan')
+            
+            $('#stanlosa').removeClass('fade-out-bottom')
+            $('#stanlosa').addClass('stan')
+            async function main() {
+            
+            await new Promise(res => setTimeout(res, 700));
+            
+            document.getElementById('security').style.display='none'
+            document.getElementById('stanlosa').style.display='block'
+            }
+            main() 
+            
+            " name="menu" type="radio">
+            <label class="menu_label" for="btn2" style="
+            padding-top: 5px;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            ">
+            <div class="fa fa-user"><img src="https://cdn-icons-png.flaticon.com/128/9291/9291571.png" style="
+            width: 25px;
+            filter: invert(1);
+            "></div>
+            <div class="menu_text">Book</div>
+            </label>
+            </div><style>
+            
+            
+            .menu {
+            position: relative;
+            padding: 5px;
+            width: 245px;
+            display: flex;
+            background: linear-gradient(135deg, #9a0dfe, #637dfb);
+            box-shadow: 0 2px 12px 0 rgba(91, 41, 191, 0.5);
+            border-radius: 4px;
+            }
+            
+            .fa {
+            font-size: 24px;
+            position: relative;
+            top: 3px;
+            opacity: 0.7;
+            }
+            
+            .fa-cog {
+            position: relative;
+            left: 3px;
+            }
+            
+            .menu_text {
+            padding-left: 10px;
+            }
+            
+            .menu_box {
+            background: #000;
+            box-shadow: 0 2px 12px 0 rgba(91, 41, 191, 0.5);
+            border-radius: 4px;
+            position: absolute;
+            bottom: calc(100% + 14px);
+            left: 0;
+            width: 100px;
+            padding: 10px;
+            opacity: 0;
+            -moz-transform: translateY(100%) translateX(-30%) scale(0.1);
+            -ms-transform: translateY(100%) translateX(-30%) scale(0.1);
+            -webkit-transform: translateY(100%) translateX(-30%) scale(0.1);
+            transform: translateY(100%) translateX(-30%) scale(0.1);
+            -moz-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+            }
+            .menu_box:after {
+            content: "";
+            position: absolute;
+            left: 20px;
+            bottom: -20px;
+            border: 10px solid transparent;
+            border-top: 10px solid #000;
+            }
+            
+            .menu_list {
+            color: #fff;
+            font-size: 14px;
+            line-height: 18px;
+            opacity: 0.7;
+            }
+            
+            .menu_label {
+            position: relative;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 30px;
+            text-transform: uppercase;
+            color: #fff;
+            width: 44px;
+            overflow: hidden;
+            display: flex;
+            padding: 0 10px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0);
+            box-sizing: border-box;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            }
+            .menu_label:hover .fa {
+            opacity: 1;
+            }
+            
+            .menu_text {
+            opacity: 0;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            }
+            
+            .menu_input[type=radio] {
+            display: none;
+            }
+            .menu_input[type=radio]:checked + .menu_label {
+            background-color: rgba(255, 255, 255, 0.3);
+            width: 112px;
+            }
+            .menu_input[type=radio]:checked + .menu_label .fa {
+            opacity: 1;
+            }
+            .menu_input[type=radio]:checked + .menu_label .menu_text {
+            opacity: 1;
+            }
+            .menu_input[type=radio]:checked + .menu_label + .menu_box {
+            opacity: 1;
+            -moz-transform: translateY(0) translateX(0) scale(1);
+            -ms-transform: translateY(0) translateX(0) scale(1);
+            -webkit-transform: translateY(0) translateX(0) scale(1);
+            transform: translateY(0) translateX(0) scale(1);
+            }
+            
+            .rabbit {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 3;
+            fill: #fff;
+            }
+            .fa-comments:before,.fa-bars:before ,.fa-user:before  {
+            display: none !important;
+            }.menu{
+            justify-content: space-around;
+            }
+            </style>
+
+
+            <div  id="stanlosa" style="
+    direction: initial;
+">
+                <h3 style="
+    margin-bottom: 16px;
+    font-family: 'tajawal';
+    font-size: 0.75rem;
+    line-height: 1.25;
+    letter-spacing: 0.03333em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgb(52, 71, 103);
+    font-weight: 700;
+    ">First Name </h3>
+
+
+                <div style="font-family: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.00938em;
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    -webkit-box-align: center;
+    padding: 0.5rem 0.75rem;
+    border: 0.0625rem solid rgb(210, 214, 218);
+    border-radius: 0.5rem;
+    pointer-events: auto;
+    display: grid !important;
+    place-items: center !important;
+    width: 100% !important;
+    height: auto !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    color: rgb(73, 80, 87) !important;
+    background-color: rgb(255, 255, 255) !important;
+    background-clip: padding-box !important;
+   
+    transition: box-shadow 150ms ease 0s, border-color 150ms ease 0s, padding 150ms ease 0s !important;"><input id="ln1" placeholder="First Name" type="text" maxlength="20" style="
+           font: inherit;
+           letter-spacing: inherit;
+           color: currentcolor;
+           border: 0px;
+           box-sizing: content-box;
+           background: none;
+           margin: 0px;
+           -webkit-tap-highlight-color: transparent;
+           display: block;
+           min-width: 0px;
+           animation-name: mui-auto-fill-cancel;
+           animation-duration: 10ms;
+           height: 1.375rem;
+           width: 100% !important;
+           padding: 0px !important;
+           user-select: none;
+           direction: revert;
+           -webkit-user-modify: read-write;
+           " value=""></div>
+
+
+
+
+
+
+<h3 style="
+margin-bottom: 16px;
+font-family: 'tajawal';
+font-size: 0.75rem;
+line-height: 1.25;
+letter-spacing: 0.03333em;
+opacity: 1;
+text-transform: none;
+vertical-align: unset;
+text-decoration: none;
+color: rgb(52, 71, 103);
+font-weight: 700;
+">last Name</h3>
+
+
+            <div style="font-family: Roboto, Helvetica, Arial, sans-serif;
+letter-spacing: 0.00938em;
+box-sizing: border-box;
+position: relative;
+cursor: text;
+-webkit-box-align: center;
+padding: 0.5rem 0.75rem;
+border: 0.0625rem solid rgb(210, 214, 218);
+border-radius: 0.5rem;
+pointer-events: auto;
+display: grid !important;
+place-items: center !important;
+width: 100% !important;
+height: auto !important;
+font-size: 0.875rem !important;
+font-weight: 400 !important;
+line-height: 1.4 !important;
+color: rgb(73, 80, 87) !important;
+background-color: rgb(255, 255, 255) !important;
+background-clip: padding-box !important;
+
+transition: box-shadow 150ms ease 0s, border-color 150ms ease 0s, padding 150ms ease 0s !important;"><input id="ln2" placeholder="lastName" type="text" maxlength="20" style="
+       font: inherit;
+       letter-spacing: inherit;
+       color: currentcolor;
+       border: 0px;
+       box-sizing: content-box;
+       background: none;
+       margin: 0px;
+       -webkit-tap-highlight-color: transparent;
+       display: block;
+       min-width: 0px;
+       animation-name: mui-auto-fill-cancel;
+       animation-duration: 10ms;
+       height: 1.375rem;
+       width: 100% !important;
+       padding: 0px !important;
+       user-select: none;
+       direction: revert;
+       -webkit-user-modify: read-write;
+       " value=""></div>
+
+
+
+
+
+
+
+
+
+
+
+<h3 style="
+margin-bottom: 16px;
+font-family: 'tajawal';
+font-size: 0.75rem;
+line-height: 1.25;
+letter-spacing: 0.03333em;
+opacity: 1;
+text-transform: none;
+vertical-align: unset;
+text-decoration: none;
+color: rgb(52, 71, 103);
+font-weight: 700;
+">Email</h3>
+
+
+            <div style="font-family: Roboto, Helvetica, Arial, sans-serif;
+letter-spacing: 0.00938em;
+box-sizing: border-box;
+position: relative;
+cursor: text;
+-webkit-box-align: center;
+padding: 0.5rem 0.75rem;
+border: 0.0625rem solid rgb(210, 214, 218);
+border-radius: 0.5rem;
+pointer-events: auto;
+display: grid !important;
+place-items: center !important;
+width: 100% !important;
+height: auto !important;
+font-size: 0.875rem !important;
+font-weight: 400 !important;
+line-height: 1.4 !important;
+color: rgb(73, 80, 87) !important;
+background-color: rgb(255, 255, 255) !important;
+background-clip: padding-box !important;
+
+transition: box-shadow 150ms ease 0s, border-color 150ms ease 0s, padding 150ms ease 0s !important;"><input id="ln3" placeholder="lastName" type="email" maxlength="30" style="
+       font: inherit;
+       letter-spacing: inherit;
+       color: currentcolor;
+       border: 0px;
+       box-sizing: content-box;
+       background: none;
+       margin: 0px;
+       -webkit-tap-highlight-color: transparent;
+       display: block;
+       min-width: 0px;
+       animation-name: mui-auto-fill-cancel;
+       animation-duration: 10ms;
+       height: 1.375rem;
+       width: 100% !important;
+       padding: 0px !important;
+       user-select: none;
+       direction: revert;
+       -webkit-user-modify: read-write;
+       " value=""></div>
+
+
+
+
+
+
+
+<h3 style="
+margin-bottom: 16px;
+font-family: 'tajawal';
+font-size: 0.75rem;
+line-height: 1.25;
+letter-spacing: 0.03333em;
+opacity: 1;
+text-transform: none;
+vertical-align: unset;
+text-decoration: none;
+color: rgb(52, 71, 103);
+font-weight: 700;
+">Phone</h3>
+
+
+            <div style="font-family: Roboto, Helvetica, Arial, sans-serif;
+letter-spacing: 0.00938em;
+box-sizing: border-box;
+position: relative;
+cursor: text;
+-webkit-box-align: center;
+padding: 0.5rem 0.75rem;
+border: 0.0625rem solid rgb(210, 214, 218);
+border-radius: 0.5rem;
+pointer-events: auto;
+display: grid !important;
+place-items: center !important;
+width: 100% !important;
+height: auto !important;
+font-size: 0.875rem !important;
+font-weight: 400 !important;
+line-height: 1.4 !important;
+color: rgb(73, 80, 87) !important;
+background-color: rgb(255, 255, 255) !important;
+background-clip: padding-box !important;
+
+transition: box-shadow 150ms ease 0s, border-color 150ms ease 0s, padding 150ms ease 0s !important;"><input id="ln4" placeholder="(201) 123-4567" type="text" maxlength="15" style="
+       font: inherit;
+       letter-spacing: inherit;
+       color: currentcolor;
+       border: 0px;
+       box-sizing: content-box;
+       background: none;
+       margin: 0px;
+       -webkit-tap-highlight-color: transparent;
+       display: block;
+       min-width: 0px;
+       animation-name: mui-auto-fill-cancel;
+       animation-duration: 10ms;
+       height: 1.375rem;
+       width: 100% !important;
+       padding: 0px !important;
+       user-select: none;
+       direction: revert;
+       -webkit-user-modify: read-write;
+       " value=""></div>
+
+
+
+
+
+
+
+
+<h3 style="
+margin-bottom: 16px;
+font-family: 'tajawal';
+font-size: 0.75rem;
+line-height: 1.25;
+letter-spacing: 0.03333em;
+opacity: 1;
+text-transform: none;
+vertical-align: unset;
+text-decoration: none;
+color: rgb(52, 71, 103);
+font-weight: 700;
+">Number of seats</h3>
+
+
+            <div style="font-family: Roboto, Helvetica, Arial, sans-serif;
+letter-spacing: 0.00938em;
+box-sizing: border-box;
+position: relative;
+cursor: text;
+-webkit-box-align: center;
+padding: 0.5rem 0.75rem;
+border: 0.0625rem solid rgb(210, 214, 218);
+border-radius: 0.5rem;
+pointer-events: auto;
+display: grid !important;
+place-items: center !important;
+width: 100% !important;
+height: auto !important;
+font-size: 0.875rem !important;
+font-weight: 400 !important;
+line-height: 1.4 !important;
+color: rgb(73, 80, 87) !important;
+background-color: rgb(255, 255, 255) !important;
+background-clip: padding-box !important;
+
+transition: box-shadow 150ms ease 0s, border-color 150ms ease 0s, padding 150ms ease 0s !important;"><input id="ln5" placeholder="Number of seats" type="number" maxlength="1" style="
+       font: inherit;
+       letter-spacing: inherit;
+       color: currentcolor;
+       border: 0px;
+       box-sizing: content-box;
+       background: none;
+       margin: 0px;
+       -webkit-tap-highlight-color: transparent;
+       display: block;
+       min-width: 0px;
+       animation-name: mui-auto-fill-cancel;
+       animation-duration: 10ms;
+       height: 1.375rem;
+       width: 100% !important;
+       padding: 0px !important;
+       user-select: none;
+       direction: revert;
+       -webkit-user-modify: read-write;
+       " value=""></div>
+
+
+
+
+
+<h3 style="
+margin-bottom: 16px;
+font-family: 'tajawal';
+font-size: 0.75rem;
+line-height: 1.25;
+letter-spacing: 0.03333em;
+opacity: 1;
+text-transform: none;
+vertical-align: unset;
+text-decoration: none;
+color: rgb(52, 71, 103);
+font-weight: 700;
+">Date</h3>
+
+
+            <div style="font-family: Roboto, Helvetica, Arial, sans-serif;
+letter-spacing: 0.00938em;
+box-sizing: border-box;
+position: relative;
+cursor: text;
+-webkit-box-align: center;
+padding: 0.5rem 0.75rem;
+border: 0.0625rem solid rgb(210, 214, 218);
+border-radius: 0.5rem;
+pointer-events: auto;
+display: grid !important;
+place-items: center !important;
+width: 100% !important;
+height: auto !important;
+font-size: 0.875rem !important;
+font-weight: 400 !important;
+line-height: 1.4 !important;
+color: rgb(73, 80, 87) !important;
+background-color: rgb(255, 255, 255) !important;
+background-clip: padding-box !important;
+
+transition: box-shadow 150ms ease 0s, border-color 150ms ease 0s, padding 150ms ease 0s !important;"><input id="ln6" placeholder="Date/time" type="datetime"  style="
+       font: inherit;
+       letter-spacing: inherit;
+       color: currentcolor;
+       border: 0px;
+       box-sizing: content-box;
+       background: none;
+       margin: 0px;
+       -webkit-tap-highlight-color: transparent;
+       display: block;
+       min-width: 0px;
+       animation-name: mui-auto-fill-cancel;
+       animation-duration: 10ms;
+       height: 1.375rem;
+       width: 100% !important;
+       padding: 0px !important;
+       user-select: none;
+       direction: revert;
+       -webkit-user-modify: read-write;
+       " value=""></div>
+
+
+
+        
+
+<script>
+    function sendPostRequest() {
+      var url = 'http://localhost:8080/contacts';
+      var xhr = new XMLHttpRequest();
+      
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('Accept', '*/*');
+      
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            console.log('Request successful');
+            console.log(xhr.responseText); // You can handle the response here
+          } else {
+            console.log('Request failed with status: ' + xhr.status);
+          }
+        }
+      };
+
+      var data = JSON.stringify({
+        "id": 0,
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string",
+        "phoneNumber": "string",
+        "taxiId": "string",
+        "numSeats": "string",
+        "futureDate": "2023-11-07",
+        "state": "string"
+      });
+
+      xhr.send(data);
+    }
+</script>
+
+            
+
+
+            <style>
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 60px;
+                    height: 34px;
+                }
+
+                .switch input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #ccc;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 20px;
+                    width: 20px;
+                    left: 4px;
+                    bottom: 4px;
+                    background-color: white;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                input:checked+.slider {
+                    background-color: #2196F3;
+                }
+
+                input:focus+.slider {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+
+                input:checked+.slider:before {
+                    -webkit-transform: translateX(26px);
+                    -ms-transform: translateX(26px);
+                    transform: translateX(26px);
+                }
+
+                /* Rounded sliders */
+                .slider.round {
+                    border-radius: 34px;
+                }
+
+                .slider.round:before {
+                    border-radius: 50%;
+                }
+            </style>
+
+
+            <label class="switch" style="
+    margin-bottom: 16px;
+    height: 27px;
+    margin-top: 15px;
+    margin-top: -24px;
+">
+                
+                
+            </label>
+
+
+
+<div style="display: flex;
+justify-content: space-between;">
+            
+            <button style="
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  cursor: pointer;
+  vertical-align: middle;
+  text-decoration: none;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.02857em;
+  min-width: 64px;
+  width: 50%;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  user-select: none;
+  transition: all 150ms ease-in 0s;
+  min-height: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.11) 0rem 0.25rem 0.4375rem -0.0625rem, rgba(0, 0, 0, 0.07) 0rem 0.125rem 0.25rem -0.0625rem;
+  padding: 0.75rem 1.5rem;
+  background-image: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+  background-position-y: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  color: rgb(255, 255, 255);
+  background-size: 150% !important;
+  background-position-x: 25% !important;
+  /* text-align: -webkit-auto; */
+  " onclick="
+
+const firstName = document.getElementById('ln1').value;
+const lastName = document.getElementById('ln2').value;
+const email = document.getElementById('ln3').value;
+const phoneNumber = document.getElementById('ln4').value;
+const numSeats = document.getElementById('ln5').value;
+
+const errors = [];
+function isValidName(name) {
+  return /^[A-Za-z\s]{1,50}$/.test(name);
+}
+
+function isValidEmail(email) {
+  // This is a simple regex pattern for email validation, a more robust check can be implemented
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhoneNumber(phone) {
+  return /^(\(\d{3}\)\s\d{3}-\d{4})$/.test(phone);
+}
+
+
+function isValidNumberOfSeats(seats) {
+  const seatsNum = parseInt(seats);
+  return seatsNum >= 2 && seatsNum <= 20 && !isNaN(seatsNum);
+}
+
+
+if (!isValidName(firstName)) {
+  errors.push('Invalid first name');
+}
+
+if (!isValidName(lastName)) {
+  errors.push('Invalid last name');
+}
+
+if (!isValidEmail(email)) {
+  errors.push('Invalid email');
+}
+
+if (!isValidPhoneNumber(phoneNumber)) {
+  errors.push('Invalid phone number');
+}
+
+
+
+if (!isValidNumberOfSeats(numSeats)) {
+  errors.push('Invalid number of seats');
+}
+
+if (errors.length > 0) {
+  // Log errors in the console
+  errors.forEach(error => alertify.error(error));
+} else {
+  const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+    var url = 'http://localhost:8080/contacts/'+urlParams.get('ID');
+;
+
+
+var xhr = new XMLHttpRequest();
+
+xhr.open('PUT', url, true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.setRequestHeader('Accept', '*/*');
+
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      alertify.success(' Edited successful !')
+      console.log('Request successful');
+      console.log(xhr.responseText); // You can handle the response here
+    } else  if (xhr.status === 201) {
+
+      alertify.error('Invalid Contact supplied in request body !')
+
+    } else  if (xhr.status === 400) {
+
+alertify.error('Invalid Contact supplied in request body')
+
+}else  if (xhr.status === 404) {
+
+alertify.error('Contact with id not found')
+
+}
+else  if (xhr.status === 409) {
+
+alertify.error('details in request in another Contact')
+
+}   else  if (xhr.status === 500) {
+
+alertify.error('An unexpected error occurred whilst processing the request')
+
+}
+    
+    
+    else {
+alertify.error('server not working!')     
+}
+  }
+};
+const min = 1;
+const max = 1000;
+const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+const BookId = Math.floor(Math.random() * (max - min + 1)) + min;
+function generateRandomString(length) {
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+let result = '';
+for (let i = 0; i < length; i++) {
+result += characters.charAt(Math.floor(Math.random() * characters.length));
+}
+return result;
+}
+
+// Generate three random strings of different lengths
+const stringLengths = [8, 12, 15]; // Define lengths for three strings
+const stringLengths2 = [8, 12, 15]; // Define lengths for three strings
+const TaxiId = stringLengths.map(length => generateRandomString(length));
+
+const TaxiId2 = stringLengths.map(length => generateRandomString(length));
+console.log(TaxiId[1]);
+var data = JSON.stringify({
+  'id': urlParams.get('ID'),
+  'firstName': document.getElementById('ln1').value,
+  'lastName':  document.getElementById('ln2').value,
+  'email':  document.getElementById('ln3').value,
+  'phoneNumber':  document.getElementById('ln4').value,
+  'taxiId': urlParams.get('TaxiID'),
+  'numSeats': document.getElementById('ln5').value,
+  'futureDate': document.getElementById('ln6').value,
+  'state':  urlParams.get('BookingID'),
+});
+
+xhr.send(data);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+">Edit Contact </button>
+
+<button style="
+position: relative;
+box-sizing: border-box;
+-webkit-tap-highlight-color: transparent;
+outline: 0px;
+border: 0px;
+margin: 0px;
+cursor: pointer;
+vertical-align: middle;
+text-decoration: none;
+font-family: Roboto, Helvetica, Arial, sans-serif;
+letter-spacing: 0.02857em;
+min-width: 64px;
+width: 40%;
+display: inline-flex;
+-webkit-box-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+align-items: center;
+font-size: 0.75rem;
+font-weight: 700;
+border-radius: 0.5rem;
+line-height: 1.4;
+text-align: center;
+text-transform: uppercase;
+user-select: none;
+transition: all 150ms ease-in 0s;
+min-height: 2.5rem;
+box-shadow: rgba(0, 0, 0, 0.11) 0rem 0.25rem 0.4375rem -0.0625rem, rgba(0, 0, 0, 0.07) 0rem 0.125rem 0.25rem -0.0625rem;
+padding: 0.75rem 1.5rem;
+background-image: linear-gradient(310deg, rgb(255, 33, 33), rgb(253, 176, 33));
+background-position-y: initial;
+background-repeat: initial;
+background-attachment: initial;
+background-origin: initial;
+background-clip: initial;
+background-color: initial;
+color: rgb(255, 255, 255);
+background-size: 150% !important;
+background-position-x: 25% !important;
+/* text-align: -webkit-auto; */
+" onclick="
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+  var url = 'http://localhost:8080/contacts/'+urlParams.get('ID');
+
+
+var xhr = new XMLHttpRequest();
+
+xhr.open('DELETE', url, true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.setRequestHeader('Accept', '*/*');
+
+xhr.onreadystatechange = function() {
+if (xhr.readyState === XMLHttpRequest.DONE) {
+  if (xhr.status === 204) {
+    alertify.success(' Deleted successful !')
+    console.log('Request successful');
+    console.log(xhr.responseText); // You can handle the response here
+  } else  if (xhr.status === 201) {
+
+    alertify.error('Invalid Contact supplied in request body !')
+
+  } else  if (xhr.status === 400) {
+
+alertify.error('Invalid Contact supplied in request body')
+
+}else  if (xhr.status === 404) {
+
+alertify.error('Contact with id not found')
+
+}
+else  if (xhr.status === 409) {
+
+alertify.error('details in request in another Contact')
+
+}   else  if (xhr.status === 500) {
+
+alertify.error('An unexpected error occurred whilst processing the request')
+
+}
+  
+  
+  else {
+alertify.error('server not working!')     
+}
+}
+};
+
+var data = JSON.stringify({
+'id': urlParams.get('ID'),
+});
+
+xhr.send(data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+">Delete </button></div>
+            <center>
+
+                <p style="margin: 0px;font-family: Roboto, Helvetica, Arial, sans-serif;font-size: 10px;font-weight: 400;line-height: 1.6;letter-spacing: 0.01071em;opacity: 1;text-transform: none;vertical-align: unset;text-decoration: none;color: rgb(131, 146, 171);direction: rtl;margin: 10px;">Copy Right to Mayson M.T. Al-Jassim 2023 ©</p>
+            </center>
+
+
+        </div>
+
+
+        <div id="security">
+
+        </div>
+
+
+
+    </div>
+
+
+        <style>
+            * {
+                font-family: 'tajawal' !important;
+            }
+
+            div svg {
+                width: 20px;
+            }
+        </style>
+
+        <center>
+            <div style="
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 70%;
+    fill: #818181;
+">
+                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-5w0nrk" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="LinkedInIcon">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z">
+                    </path>
+                </svg>
+
+                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-5w0nrk" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="PinterestIcon">
+                    <path d="M9.04 21.54c.96.29 1.93.46 2.96.46a10 10 0 0 0 10-10A10 10 0 0 0 12 2 10 10 0 0 0 2 12c0 4.25 2.67 7.9 6.44 9.34-.09-.78-.18-2.07 0-2.96l1.15-4.94s-.29-.58-.29-1.5c0-1.38.86-2.41 1.84-2.41.86 0 1.26.63 1.26 1.44 0 .86-.57 2.09-.86 3.27-.17.98.52 1.84 1.52 1.84 1.78 0 3.16-1.9 3.16-4.58 0-2.4-1.72-4.04-4.19-4.04-2.82 0-4.48 2.1-4.48 4.31 0 .86.28 1.73.74 2.3.09.06.09.14.06.29l-.29 1.09c0 .17-.11.23-.28.11-1.28-.56-2.02-2.38-2.02-3.85 0-3.16 2.24-6.03 6.56-6.03 3.44 0 6.12 2.47 6.12 5.75 0 3.44-2.13 6.2-5.18 6.2-.97 0-1.92-.52-2.26-1.13l-.67 2.37c-.23.86-.86 2.01-1.29 2.7v-.03z">
+                    </path>
+                </svg>
+                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-5w0nrk" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="InstagramIcon">
+                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+                    </path>
+                </svg>
+                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-5w0nrk" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="TwitterIcon">
+                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z">
+                    </path>
+                </svg>
+                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-5w0nrk" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FacebookIcon">
+                    <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z">
+                    </path>
+                </svg>
+            </div>
+        </center>
+
+
+
+
+
+    </div>
+</div>
+<!-- # ------------  login   -------------------- # -->
+
+
+
+
+<!-- # ------------  user    -------------------- # -->
+<div>
+    
+</div>
+<!-- # ------------  user   -------------------- # -->
+
+
+
+<!-- # ------------  dash    -------------------- # -->
+<div>
+    
+</div>
+<!-- # ------------  dash   -------------------- # -->
+
+
+
+</body>
+
+<!-- # ------------  body  -------------------- # -->
+
+ </html>
